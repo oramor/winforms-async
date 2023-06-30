@@ -8,7 +8,7 @@
             Task.Run(() => RunLoaderAsync());
         }
 
-        public bool IsLoaded { get; init; }
+        public bool IsDataLoaded { get; init; }
         public string Title { get; set; }
 
         public event EventHandler? DataLoaded;
