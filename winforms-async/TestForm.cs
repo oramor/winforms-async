@@ -11,7 +11,7 @@
         {
             base.OnDataContextChanged(e);
 
-            if (DataContext is TestFormViewModel ctx)
+            if (DataContext is IAsyncViewModel ctx)
             {
                 if (ctx.IsLoaded)
                 {

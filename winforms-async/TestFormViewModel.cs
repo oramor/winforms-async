@@ -1,6 +1,6 @@
 ﻿namespace winforms_async
 {
-    internal class TestFormViewModel
+    internal class TestFormViewModel : IAsyncViewModel
     {
         public TestFormViewModel()
         {

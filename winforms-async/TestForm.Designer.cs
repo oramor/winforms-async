@@ -28,19 +28,32 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.textBoxAsync1 = new winforms_async.TextBoxAsync();
             this.SuspendLayout();
             // 
-            // Form1
+            // textBoxAsync1
+            // 
+            this.textBoxAsync1.Enabled = false;
+            this.textBoxAsync1.Location = new System.Drawing.Point(96, 27);
+            this.textBoxAsync1.Name = "textBoxAsync1";
+            this.textBoxAsync1.Size = new System.Drawing.Size(150, 31);
+            this.textBoxAsync1.TabIndex = 0;
+            // 
+            // TestForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 25F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(477, 286);
-            this.Name = "Form1";
+            this.Controls.Add(this.textBoxAsync1);
+            this.Name = "TestForm";
             this.Text = "Form1";
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
+
+        private TextBoxAsync textBoxAsync1;
     }
 }
