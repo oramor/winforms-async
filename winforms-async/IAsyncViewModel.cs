@@ -3,7 +3,8 @@
     internal interface IAsyncViewModel
     {
         string Title { get; }
-        event EventHandler? DataLoaded;
+        event EventHandler<DataLoadStatusChangedEventArgs> DataLoadStatusChanged;
+        DataLoadStatusEnum DataLoadStatus { get; }
         bool IsDataLoaded { get; }
     }
 }

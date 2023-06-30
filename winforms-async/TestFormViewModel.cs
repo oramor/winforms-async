@@ -6,22 +6,34 @@
         {
             Title = "Loading...";
             Task.Run(() => RunLoaderAsync());
+
         }
 
         public bool IsDataLoaded { get; init; }
         public string Title { get; set; }
+        public DataLoadStatusEnum DataLoadStatus { get; set; } = DataLoadStatusEnum.NotLoaded;
 
-        public event EventHandler? DataLoaded;
-        void OnViewModelLoaded()
+        public event EventHandler<DataLoadStatusChangedEventArgs>? DataLoadStatusChanged;
+        void OnDataLoadStatusChanged(DataLoadStatusEnum status)
         {
-            DataLoaded?.Invoke(this, EventArgs.Empty);
+            DataLoadStatus = status;
+            DataLoadStatusChanged?.Invoke(this, new DataLoadStatusChangedEventArgs(status));
         }
 
         async void RunLoaderAsync()
         {
-            await Task.Delay(2000);
-            Title = "Loaded!";
-            OnViewModelLoaded();
+            try
+            {
+                OnDataLoadStatusChanged(DataLoadStatusEnum.OnLoading);
+                await Task.Delay(2000);
+                //throw new Exception();
+                Title = "Loaded!";
+                OnDataLoadStatusChanged(DataLoadStatusEnum.Loaded);
+            }
+            catch
+            {
+                OnDataLoadStatusChanged(DataLoadStatusEnum.Error);
+            }
         }
     }
 }

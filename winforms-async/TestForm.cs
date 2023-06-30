@@ -17,14 +17,12 @@
                 {
                     Text = ctx.Title;
                 }
-                else
-                {
-                    ctx.DataLoaded += DataContext_DataLoaded;
-                }
+
+                ctx.DataLoadStatusChanged += DataContext_DataLoadStatusChanged;
             }
         }
 
-        void DataContext_DataLoaded(object? sender, EventArgs e)
+        void DataContext_DataLoadStatusChanged(object? sender, DataLoadStatusChangedEventArgs e)
         {
             if (DataContext is TestFormViewModel ctx)
             {

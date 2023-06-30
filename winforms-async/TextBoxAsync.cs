@@ -17,31 +17,66 @@
             {
                 if (ctx.IsDataLoaded)
                 {
-                    SetReady();
+                    SetLoaded();
                 }
-                else
-                {
-                    ctx.DataLoaded += DataContext_DataLoaded;
-                }
+
+                ctx.DataLoadStatusChanged += DataContext_DataLoadStatusChanged;
             }
 
-            void SetReady()
+            void SetLoaded()
             {
-                Text = string.Empty;
-                Enabled = true;
+                if (InvokeRequired)
+                {
+                    Invoke(() => {
+                        Text = string.Empty;
+                        Enabled = true;
+                    });
+                }
             }
 
-            void DataContext_DataLoaded(object? sender, EventArgs e)
+            void SetError()
+            {
+                if (InvokeRequired)
+                {
+                    Invoke(() => {
+                        Text = "<Error>";
+                        Enabled = false;
+                    });
+                }
+            }
+
+            void SetLoading()
+            {
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(() => {
+                        Text = "Loading...";
+                        Enabled = false;
+                    });
+                }
+            }
+
+            void DataContext_DataLoadStatusChanged(object? sender, DataLoadStatusChangedEventArgs e)
             {
                 if (DataContext is TestFormViewModel ctx)
                 {
-                    if (this.InvokeRequired)
+                    switch (e.Status)
                     {
-                        this.Invoke(() => SetReady());
-                    }
-                    else
-                    {
-                        Text = ctx.Title;
+                        case DataLoadStatusEnum.OnLoading:
+                            {
+                                SetLoading();
+                                break;
+                            }
+                        case DataLoadStatusEnum.Loaded:
+                            {
+                                SetLoaded();
+                                break;
+                            }
+                        case DataLoadStatusEnum.Error:
+                            {
+                                SetError();
+                                break;
+                            }
                     }
                 }
             }
