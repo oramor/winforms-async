@@ -11,10 +11,10 @@
         public bool IsLoaded { get; init; }
         public string Title { get; set; }
 
-        public event EventHandler? ViewModelLoaded;
+        public event EventHandler? DataLoaded;
         void OnViewModelLoaded()
         {
-            ViewModelLoaded?.Invoke(this, EventArgs.Empty);
+            DataLoaded?.Invoke(this, EventArgs.Empty);
         }
 
         async void RunLoaderAsync()

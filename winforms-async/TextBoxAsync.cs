@@ -15,13 +15,13 @@
 
             if (DataContext is IAsyncViewModel ctx)
             {
-                if (ctx.IsLoaded)
+                if (ctx.IsDataLoaded)
                 {
                     SetReady();
                 }
                 else
                 {
-                    ctx.ViewModelLoaded += DataContext_Loaded;
+                    ctx.DataLoaded += DataContext_DataLoaded;
                 }
             }
 
@@ -31,7 +31,7 @@
                 Enabled = true;
             }
 
-            void DataContext_Loaded(object? sender, EventArgs e)
+            void DataContext_DataLoaded(object? sender, EventArgs e)
             {
                 if (DataContext is TestFormViewModel ctx)
                 {

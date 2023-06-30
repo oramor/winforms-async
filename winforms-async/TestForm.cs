@@ -13,18 +13,18 @@
 
             if (DataContext is IAsyncViewModel ctx)
             {
-                if (ctx.IsLoaded)
+                if (ctx.IsDataLoaded)
                 {
                     Text = ctx.Title;
                 }
                 else
                 {
-                    ctx.ViewModelLoaded += DataContext_Loaded;
+                    ctx.DataLoaded += DataContext_DataLoaded;
                 }
             }
         }
 
-        void DataContext_Loaded(object? sender, EventArgs e)
+        void DataContext_DataLoaded(object? sender, EventArgs e)
         {
             if (DataContext is TestFormViewModel ctx)
             {

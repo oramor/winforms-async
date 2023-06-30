@@ -3,7 +3,7 @@
     internal interface IAsyncViewModel
     {
         string Title { get; }
-        event EventHandler? ViewModelLoaded;
-        bool IsLoaded { get; }
+        event EventHandler? DataLoaded;
+        bool IsDataLoaded { get; }
     }
 }
