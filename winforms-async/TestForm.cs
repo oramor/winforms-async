@@ -28,7 +28,14 @@
         {
             if (DataContext is TestFormViewModel ctx)
             {
-                Text = ctx.Title;
+                if (this.InvokeRequired)
+                {
+                    this.Invoke(() => Text = ctx.Title);
+                }
+                else
+                {
+                    Text = ctx.Title;
+                }
             }
         }
     }
