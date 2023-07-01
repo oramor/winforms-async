@@ -58,7 +58,7 @@
 
             void DataContext_DataLoadStatusChanged(object? sender, DataLoadStatusChangedEventArgs e)
             {
-                if (DataContext is TestFormViewModel ctx)
+                if (DataContext is IAsyncViewModel ctx)
                 {
                     switch (e.Status)
                     {
