@@ -5,19 +5,30 @@ namespace label_progress_issue
         public Form1()
         {
             InitializeComponent();
+
+            statusBarControl.SetLoggerContext(App.Logger);
+            statusBarControl.RangeItems();
+            App.Logger.Info("Ready");
         }
 
-        private async void startProgressButton_Click(object sender, EventArgs e)
+        protected override async void OnShown(EventArgs e)
+        {
+            base.OnShown(e);
+
+            await LoadAsync();
+        }
+
+        async Task LoadAsync()
         {
             var loader = new Loader();
-            loader.ProgressChanged += Loader_ProgressChanged;
+            App.Logger.ReportProgress(loader);
             await loader.LoadAsync();
-            progressLabel.Text = "Finished";
+            App.Logger.Info("Finished");
         }
 
-        void Loader_ProgressChanged(object? sender, ProgressInfo info)
+        void startProgressButton_Click(object sender, EventArgs e)
         {
-            progressLabel.Text = info.Message;
+
         }
     }
 }

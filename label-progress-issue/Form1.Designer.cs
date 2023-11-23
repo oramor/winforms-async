@@ -30,6 +30,7 @@
         {
             startProgressButton = new Button();
             progressLabel = new Label();
+            statusBarControl = new StatusBarControl();
             SuspendLayout();
             // 
             // startProgressButton
@@ -51,11 +52,20 @@
             progressLabel.TabIndex = 1;
             progressLabel.Text = "Step 0";
             // 
+            // statusBarControl
+            // 
+            statusBarControl.Location = new Point(0, 357);
+            statusBarControl.Name = "statusBarControl";
+            statusBarControl.Size = new Size(831, 22);
+            statusBarControl.TabIndex = 2;
+            statusBarControl.Text = "statusBarControl1";
+            // 
             // Form1
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(426, 277);
+            ClientSize = new Size(831, 379);
+            Controls.Add(statusBarControl);
             Controls.Add(progressLabel);
             Controls.Add(startProgressButton);
             Name = "Form1";
@@ -68,5 +78,6 @@
 
         private Button startProgressButton;
         private Label progressLabel;
+        private StatusBarControl statusBarControl;
     }
 }

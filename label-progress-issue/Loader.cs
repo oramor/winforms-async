@@ -11,7 +11,7 @@
             await Task.Delay(300);
 
             ReportMessage("Step 3");
-            await Task.Delay(300);
+            await Task.Delay(50);
         }
     }
 }
