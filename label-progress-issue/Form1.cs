@@ -15,20 +15,24 @@ namespace label_progress_issue
         {
             base.OnShown(e);
 
-            await LoadAsync();
-        }
-
-        async Task LoadAsync()
-        {
             var loader = new Loader();
             App.Logger.ReportProgress(loader);
             await loader.LoadAsync();
             App.Logger.Info("Finished");
         }
 
-        void startProgressButton_Click(object sender, EventArgs e)
+        async void startProgressButton_Click(object sender, EventArgs e)
         {
+            progressLabel.Text = "Step 1";
+            await Task.Delay(200);
 
+            progressLabel.Text = "Step 2";
+            await Task.Delay(200);
+
+            progressLabel.Text = "Step 3";
+            //await Task.Delay(200);
+
+            progressLabel.Text = "Finished";
         }
     }
 }

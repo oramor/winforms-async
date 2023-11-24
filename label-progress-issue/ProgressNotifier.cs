@@ -4,6 +4,11 @@
     {
         internal void ReportMessage(string message)
         {
+            if (message == "Step 3")
+            {
+                Console.WriteLine("Step 3");
+            }
+
             OnReport(new ProgressInfo(message));
         }
     }
